@@ -3,104 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fthlabz | Digital Solutions</title>
+    <title>fthlabz | Hub</title>
     <style>
-        :root {
-            --bg-color: #0a0a0a;
-            --accent-color: #00d2ff;
-            --text-color: #ffffff;
-            --card-bg: #1a1a1a;
-        }
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-        .container {
-            padding: 20px;
-            max-width: 800px;
-        }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            background: linear-gradient(to right, #00d2ff, #3a7bd5);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        p {
-            font-size: 1.2rem;
-            color: #888;
-            margin-bottom: 40px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            width: 100%;
-        }
-        .card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #333;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: white;
-            cursor: pointer;
-        }
-        .card:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.2);
-        }
-        .card h3 {
-            margin-top: 0;
-            color: var(--accent-color);
-        }
-        .card p {
-            font-size: 0.9rem;
-            margin-bottom: 0;
-        }
-        footer {
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #444;
-        }
+        body { background: #0a0a0a; color: white; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; }
+        .container { max-width: 900px; width: 90%; text-align: center; padding-top: 50px; }
+        h1 { background: linear-gradient(45deg, #00d2ff, #3a7bd5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
+        .card { background: #1a1a1a; padding: 25px; border-radius: 12px; border: 1px solid #333; text-decoration: none; color: white; transition: 0.3s; }
+        .card:hover { border-color: #00d2ff; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,210,255,0.3); }
+        .card h3 { color: #00d2ff; margin: 0 0 10px 0; }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>FTHLABZ</h1>
-        <p>Geleceğin Dijital Çözümleri ve Akıllı Sistemleri</p>
-
-        <div class="grid">
-            <a href="vitrin.html" class="card">
-                <h3>Sanal Keşif</h3>
-                <p>Dijital dünyayı keşfetmek için tasarlanmış interaktif çözüm.</p>
-            </a>
-
-            <a href="panel.html" class="card">
-                <h3>Yönetim Paneli</h3>
-                <p>Sistem ayarlarını ve veri akışını kontrol edin.</p>
-            </a>
-
-            <div class="card" style="opacity: 0.5; cursor: default;">
-                <h3>Yeni Projeler</h3>
-                <p>Çok yakında burada yeni dijital çözümler olacak.</p>
+        <p>Dijital Çözümler Karargahı</p>
+        <div id="program-listesi" class="grid">
             </div>
-        </div>
     </div>
 
-    <footer>&copy; 2026 fthlabz.com | Tüm Hakları Saklıdır.</footer>
+    <script>
+        // YENİ PROGRAM EKLEMEK İÇİN SADECE AŞAĞIDAKİ LİSTEYE EKLEME YAP:
+        const projeler = [
+            { isim: "Sanal Keşif", link: "https://fthlabz.github.io/Sanal-Kesif/vitrin.html", aciklama: "İlk dijital keşif projemiz." },
+            { isim: "Yönetim Paneli", link: "panel.html", aciklama: "Sistem yönetim alanı." },
+            // Buraya yeni satır ekleyebilirsin:
+            // { isim: "Yeni Uygulama", link: "link-adresi", aciklama: "Kısa açıklama" }
+        ];
 
+        const liste = document.getElementById('program-listesi');
+        projeler.forEach(p => {
+            liste.innerHTML += `
+                <a href="${p.link}" class="card">
+                    <h3>${p.isim}</h3>
+                    <p>${p.aciklama}</p>
+                </a>`;
+        });
+    </script>
 </body>
 </html>
