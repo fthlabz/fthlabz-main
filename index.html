@@ -59,7 +59,7 @@
         /* --- NAV & HERO --- */
         nav {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Sağı boşaltmak için */
             align-items: center;
             padding: 30px 5%;
             max-width: 1400px;
@@ -79,15 +79,17 @@
             padding: 50px 5%;
             max-width: 1400px;
             margin: 0 auto;
+            text-align: left;
         }
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.3; /* DÜZELTME: 'g' harfi için satır yüksekliği arttı */
             margin-bottom: 20px;
             background: linear-gradient(to right, #111, #444);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            padding-bottom: 10px; /* Alt taşma payı */
         }
         .hero p {
             font-size: 1.1rem;
@@ -119,9 +121,12 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
+            align-items: center; /* Kart içeriğini ortala */
+            text-align: center; /* Metni ortala */
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             position: relative;
             overflow: hidden;
+            height: 100%; /* Eşit yükseklik */
         }
 
         .card:hover { 
@@ -131,23 +136,39 @@
         }
 
         .icon-box {
-            width: 60px; height: 60px;
-            border-radius: 16px;
+            width: 70px; height: 70px;
+            border-radius: 20px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 28px;
+            font-size: 32px;
             margin-bottom: 25px;
             transition: 0.3s;
         }
 
-        .card h3 { font-size: 1.4rem; margin: 0 0 10px 0; font-weight: 800; }
-        .card p { color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin: 0; }
+        .card h3 { font-size: 1.4rem; margin: 0 0 15px 0; font-weight: 800; }
+        .card p { color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin: 0; flex-grow: 1; }
         
-        .card-link {
-            margin-top: 25px;
+        /* YENİ TOK BUTON TASARIMI */
+        .card-btn {
+            margin-top: 30px;
+            padding: 12px 24px;
+            border-radius: 14px;
             font-weight: 700;
-            font-size: 0.9rem;
-            display: flex; align-items: center; gap: 8px;
+            font-size: 0.95rem;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            gap: 10px;
+            color: #fff; /* Yazı rengi beyaz */
+            width: 100%; /* Tam genişlik */
+            transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+        .card-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .card-btn i { font-size: 1.2rem; }
+
 
         /* --- FLOATING CONTACT BAR --- */
         .floating-contact {
@@ -155,7 +176,7 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(15, 23, 42, 0.9); /* Koyu Lacivert/Siyah */
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             padding: 12px 30px;
@@ -168,6 +189,7 @@
             border: 1px solid rgba(255,255,255,0.1);
             width: max-content;
             animation: slideUp 0.8s ease-out 1s backwards;
+            white-space: nowrap; /* Taşmayı engeller */
         }
 
         .contact-item {
@@ -179,14 +201,16 @@
         .contact-item:hover { color: var(--primary); transform: scale(1.05); }
         .divider { width: 1px; height: 24px; background: rgba(255,255,255,0.2); }
 
-        /* Mobil */
+        /* Mobil Düzeltmeleri */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
+            .hero h1 { font-size: 2.5rem; text-align: center; }
+            .hero p { text-align: center; }
             .floating-contact { 
-                bottom: 20px; width: 90%; 
-                justify-content: center; padding: 12px 15px; gap: 15px; 
+                bottom: 20px; width: auto; max-width: 95%;
+                justify-content: center; padding: 10px 20px; gap: 15px; 
             }
-            .contact-item span { font-size: 0.85rem; }
+            .contact-item span { font-size: 0.8rem; } /* Mobilde font küçüldü */
+            .contact-item i { font-size: 1.1rem; }
         }
 
         @keyframes slideUp {
@@ -204,8 +228,7 @@
 
     <nav>
         <a href="#" class="logo">FTHLABZ<span>.</span></a>
-        <div style="font-size: 0.9rem; font-weight: 600; color: #9ca3af;">V3.1 Premium</div>
-    </nav>
+        </nav>
 
     <section class="hero">
         <h1>Dijital Çözümler<br>Karargahı.</h1>
@@ -229,7 +252,7 @@
     </div>
 
     <script>
-        // OTOMATİK RENK HAVUZU (Sırayla seçer)
+        // OTOMATİK RENK HAVUZU
         const colors = [
             { bg: "#eff6ff", text: "#2563eb" }, // Mavi
             { bg: "#f0fdf4", text: "#16a34a" }, // Yeşil
@@ -239,57 +262,53 @@
             { bg: "#ecfeff", text: "#0891b2" }  // Turkuaz
         ];
 
-        // --- SENİN PANELİN: ARTIK RENK GİRMENE GEREK YOK ---
+        // PROJE LİSTESİ
         const projects = [
             { 
                 isim: "Sanal Keşif AR", 
                 link: "https://fthlabz.github.io/sanal-kesif/index.html", 
                 aciklama: "Müşterinin evine ürün ışınlayan artırılmış gerçeklik vitrini.",
-                icon: "ri-eye-2-line"
+                icon: "ri-eye-fill"
             },
             { 
                 isim: "Mobil Stok & Depo", 
                 link: "https://fthlabz.github.io/stok-takip/", 
                 aciklama: "El terminalsiz, cep telefonuyla saniyeler içinde stok sayımı.",
-                icon: "ri-archive-line"
+                icon: "ri-archive-fill"
             },
             { 
                 isim: "Akıllı Ürün Kimliği", 
                 link: "https://fthlabz.github.io/Otomatik-id-qr/", 
                 aciklama: "Her ürüne özel QR kimlik ile teknik veri ve stok takibi.",
-                icon: "ri-qr-code-line"
+                icon: "ri-qr-code-fill"
             },
             { 
                 isim: "Dijital Kartvizit", 
                 link: "https://fthlabz.github.io/V-cardv1/?id=Fatih-SARI", 
                 aciklama: "Sınırsız güncellenebilir, temassız yeni nesil kartvizit.",
-                icon: "ri-id-card-line"
+                icon: "ri-id-card-fill" 
             },
             { 
                 isim: "AI Görsel İyileştirme", 
                 link: "https://fthlabz.github.io/Kod/", 
                 aciklama: "Bulanık ürün fotoğraflarını yapay zeka ile 4K kaliteye çıkarın.",
-                icon: "ri-magic-line"
+                icon: "ri-magic-fill"
             },
             { 
                 isim: "FTHLABZ Vizyon", 
                 link: "https://fthlabz.github.io/fthlabz-reklam/index.html", 
                 aciklama: "Operasyonel maliyetleri düşüren kurumsal stratejilerimiz.",
-                icon: "ri-building-4-line"
+                icon: "ri-building-fill"
             }
-            // YENİ EKLEME YAPMAK İÇİN SADECE ŞUNU EKLE:
-            // { isim: "Yeni İş", link: "...", aciklama: "...", icon: "ri-star-line" },
         ];
 
         const list = document.getElementById('program-listesi');
         
         projects.forEach((p, i) => {
-            // SİHİRLİ DOKUNUŞ: Rengi otomatik seçiyoruz
             const theme = colors[i % colors.length];
-
-            // Animasyon gecikmesi
             const delay = i * 100;
 
+            // Tok Buton Yapısı Eklendi
             list.innerHTML += `
                 <a href="${p.link}" class="card" style="animation: fadeIn 0.6s ease-out ${delay}ms backwards;">
                     <div class="icon-box" style="background: ${theme.bg}; color: ${theme.text};">
@@ -297,8 +316,9 @@
                     </div>
                     <h3 style="color: #111;">${p.isim}</h3>
                     <p>${p.aciklama}</p>
-                    <div class="card-link" style="color: ${theme.text};">
-                        İncele <i class="ri-arrow-right-line"></i>
+                    
+                    <div class="card-btn" style="background: ${theme.text};">
+                        İncele <i class="ri-arrow-right-circle-fill"></i>
                     </div>
                 </a>`;
         });
