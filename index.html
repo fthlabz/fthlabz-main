@@ -13,7 +13,6 @@
             --light: #ffffff;
             --gray: #f3f4f6;
             --primary: #2563eb;
-            --accent: #f59e0b;
         }
 
         * { box-sizing: border-box; }
@@ -26,10 +25,10 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            padding-bottom: 100px; /* Alttaki bar için boşluk */
+            padding-bottom: 120px;
         }
 
-        /* --- ARKA PLAN ANİMASYONU (Lava Lamp) --- */
+        /* --- ARKA PLAN EFEKTLERİ --- */
         .background-shapes {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -38,27 +37,26 @@
         }
         .shape {
             position: absolute;
-            filter: blur(80px);
-            opacity: 0.6;
+            filter: blur(90px);
+            opacity: 0.5;
             animation: float 10s infinite alternate;
         }
         .shape-1 {
             top: -10%; left: -10%; width: 50vw; height: 50vw;
-            background: rgba(37, 99, 235, 0.15); /* Mavi */
-            animation-delay: 0s;
+            background: rgba(37, 99, 235, 0.15);
         }
         .shape-2 {
             bottom: 10%; right: -10%; width: 40vw; height: 40vw;
-            background: rgba(245, 158, 11, 0.1); /* Turuncu */
+            background: rgba(245, 158, 11, 0.1);
             animation-delay: -5s;
         }
         
         @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(30px, 50px) scale(1.1); }
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 50px); }
         }
 
-        /* --- HEADER & LOGO --- */
+        /* --- NAV & HERO --- */
         nav {
             display: flex;
             justify-content: space-between;
@@ -77,14 +75,13 @@
         }
         .logo span { color: var(--primary); }
 
-        /* --- HERO --- */
         .hero {
             padding: 50px 5%;
             max-width: 1400px;
             margin: 0 auto;
         }
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 20px;
@@ -99,7 +96,7 @@
             line-height: 1.6;
         }
 
-        /* --- GRID --- */
+        /* --- GRID & CARD --- */
         .container { 
             max-width: 1400px; 
             padding: 20px 5%; 
@@ -111,11 +108,10 @@
             gap: 30px; 
         }
 
-        /* --- KART TASARIMI --- */
         .card { 
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.8);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.9);
             border-radius: 24px; 
             padding: 35px; 
             text-decoration: none; 
@@ -130,7 +126,7 @@
 
         .card:hover { 
             transform: translateY(-8px); 
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
             background: #fff;
         }
 
@@ -146,69 +142,55 @@
         .card h3 { font-size: 1.4rem; margin: 0 0 10px 0; font-weight: 800; }
         .card p { color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin: 0; }
         
-        /* Renkli Çizgi Efekti */
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
-            background: currentColor; opacity: 0; transition: 0.3s;
+        .card-link {
+            margin-top: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex; align-items: center; gap: 8px;
         }
-        .card:hover::before { opacity: 1; }
 
-        /* --- SABİT İLETİŞİM BARI (STICKY BOTTOM BAR) --- */
+        /* --- FLOATING CONTACT BAR --- */
         .floating-contact {
             position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(22, 22, 22, 0.85); /* Koyu Cam */
+            background: rgba(15, 23, 42, 0.9); /* Koyu Lacivert/Siyah */
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            padding: 12px 25px;
+            padding: 12px 30px;
             border-radius: 50px;
             display: flex;
             align-items: center;
-            gap: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            gap: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             z-index: 1000;
             border: 1px solid rgba(255,255,255,0.1);
             width: max-content;
-            max-width: 90%;
             animation: slideUp 0.8s ease-out 1s backwards;
         }
 
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
+            display: flex; align-items: center; gap: 10px;
+            color: #fff; text-decoration: none;
+            font-size: 0.95rem; font-weight: 600;
             transition: 0.3s;
-            white-space: nowrap;
         }
-        
-        .contact-item i { font-size: 1.2rem; }
         .contact-item:hover { color: var(--primary); transform: scale(1.05); }
-        
-        /* Ayırıcı Çizgi */
-        .divider { width: 1px; height: 20px; background: rgba(255,255,255,0.2); }
+        .divider { width: 1px; height: 24px; background: rgba(255,255,255,0.2); }
 
-        /* Mobil Uyum */
+        /* Mobil */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
+            .hero h1 { font-size: 2.5rem; }
             .floating-contact { 
-                bottom: 20px; 
-                padding: 10px 20px; 
-                gap: 15px; 
-                font-size: 0.8rem;
-                flex-direction: row;
+                bottom: 20px; width: 90%; 
+                justify-content: center; padding: 12px 15px; gap: 15px; 
             }
-            .contact-text { display: none; } /* Mobilde sadece ikonlar kalsın istersen bunu aç */
             .contact-item span { font-size: 0.85rem; }
         }
-        
+
         @keyframes slideUp {
-            from { opacity: 0; transform: translate(-50%, 20px); }
+            from { opacity: 0; transform: translate(-50%, 50px); }
             to { opacity: 1; transform: translate(-50%, 0); }
         }
     </style>
@@ -222,12 +204,12 @@
 
     <nav>
         <a href="#" class="logo">FTHLABZ<span>.</span></a>
-        <div style="font-size: 0.9rem; font-weight: 600; color: #888;">Dijital Karargah</div>
+        <div style="font-size: 0.9rem; font-weight: 600; color: #9ca3af;">V3.1 Premium</div>
     </nav>
 
     <section class="hero">
-        <h1>Yeni Nesil<br>Operasyonel Çözümler.</h1>
-        <p>İşletme maliyetlerini düşüren, stok takibini hızlandıran ve satışı artıran premium yazılım araçları.</p>
+        <h1>Dijital Çözümler<br>Karargahı.</h1>
+        <p>İşletme maliyetlerini düşüren, operasyonel süreçleri hızlandıran ve verimliliği artıran yeni nesil yazılım teknolojileri.</p>
     </section>
 
     <div class="container">
@@ -236,82 +218,91 @@
 
     <div class="floating-contact">
         <a href="https://wa.me/905373583095" target="_blank" class="contact-item">
-            <i class="ri-whatsapp-fill" style="color: #25D366;"></i>
+            <i class="ri-whatsapp-fill" style="color: #25D366; font-size: 1.4rem;"></i>
             <span>0537 358 30 95</span>
         </a>
-        
         <div class="divider"></div>
-        
         <a href="mailto:fthlabz@hotmail.com" class="contact-item">
-            <i class="ri-mail-fill" style="color: #f59e0b;"></i>
+            <i class="ri-mail-fill" style="color: #f59e0b; font-size: 1.4rem;"></i>
             <span>fthlabz@hotmail.com</span>
         </a>
     </div>
 
     <script>
-        // İKONLAR (RemixIcon Classları)
+        // OTOMATİK RENK HAVUZU (Sırayla seçer)
+        const colors = [
+            { bg: "#eff6ff", text: "#2563eb" }, // Mavi
+            { bg: "#f0fdf4", text: "#16a34a" }, // Yeşil
+            { bg: "#fff7ed", text: "#ea580c" }, // Turuncu
+            { bg: "#faf5ff", text: "#9333ea" }, // Mor
+            { bg: "#fef2f2", text: "#dc2626" }, // Kırmızı
+            { bg: "#ecfeff", text: "#0891b2" }  // Turkuaz
+        ];
+
+        // --- SENİN PANELİN: ARTIK RENK GİRMENE GEREK YOK ---
         const projects = [
             { 
                 isim: "Sanal Keşif AR", 
                 link: "https://fthlabz.github.io/sanal-kesif/index.html", 
                 aciklama: "Müşterinin evine ürün ışınlayan artırılmış gerçeklik vitrini.",
-                icon: "ri-eye-2-line",
-                color: { bg: "#eff6ff", text: "#2563eb" } // Mavi
+                icon: "ri-eye-2-line"
             },
             { 
                 isim: "Mobil Stok & Depo", 
                 link: "https://fthlabz.github.io/stok-takip/", 
                 aciklama: "El terminalsiz, cep telefonuyla saniyeler içinde stok sayımı.",
-                icon: "ri-archive-line",
-                color: { bg: "#f0fdf4", text: "#16a34a" } // Yeşil
+                icon: "ri-archive-line"
             },
             { 
                 isim: "Akıllı Ürün Kimliği", 
                 link: "https://fthlabz.github.io/Otomatik-id-qr/", 
                 aciklama: "Her ürüne özel QR kimlik ile teknik veri ve stok takibi.",
-                icon: "ri-qr-code-line",
-                color: { bg: "#fff7ed", text: "#ea580c" } // Turuncu
+                icon: "ri-qr-code-line"
             },
             { 
                 isim: "Dijital Kartvizit", 
                 link: "https://fthlabz.github.io/V-cardv1/?id=Fatih-SARI", 
                 aciklama: "Sınırsız güncellenebilir, temassız yeni nesil kartvizit.",
-                icon: "ri-id-card-line",
-                color: { bg: "#faf5ff", text: "#9333ea" } // Mor
+                icon: "ri-id-card-line"
             },
             { 
                 isim: "AI Görsel İyileştirme", 
                 link: "https://fthlabz.github.io/Kod/", 
                 aciklama: "Bulanık ürün fotoğraflarını yapay zeka ile 4K kaliteye çıkarın.",
-                icon: "ri-magic-line",
-                color: { bg: "#fef2f2", text: "#dc2626" } // Kırmızı
+                icon: "ri-magic-line"
             },
             { 
                 isim: "FTHLABZ Vizyon", 
                 link: "https://fthlabz.github.io/fthlabz-reklam/index.html", 
                 aciklama: "Operasyonel maliyetleri düşüren kurumsal stratejilerimiz.",
-                icon: "ri-building-4-line",
-                color: { bg: "#ecfeff", text: "#0891b2" } // Turkuaz
+                icon: "ri-building-4-line"
             }
+            // YENİ EKLEME YAPMAK İÇİN SADECE ŞUNU EKLE:
+            // { isim: "Yeni İş", link: "...", aciklama: "...", icon: "ri-star-line" },
         ];
 
         const list = document.getElementById('program-listesi');
         
         projects.forEach((p, i) => {
+            // SİHİRLİ DOKUNUŞ: Rengi otomatik seçiyoruz
+            const theme = colors[i % colors.length];
+
             // Animasyon gecikmesi
             const delay = i * 100;
 
             list.innerHTML += `
-                <a href="${p.link}" class="card" style="color: ${p.color.text}; animation: fadeIn 0.6s ease-out ${delay}ms backwards;">
-                    <div class="icon-box" style="background: ${p.color.bg}; color: ${p.color.text};">
+                <a href="${p.link}" class="card" style="animation: fadeIn 0.6s ease-out ${delay}ms backwards;">
+                    <div class="icon-box" style="background: ${theme.bg}; color: ${theme.text};">
                         <i class="${p.icon}"></i>
                     </div>
                     <h3 style="color: #111;">${p.isim}</h3>
                     <p>${p.aciklama}</p>
+                    <div class="card-link" style="color: ${theme.text};">
+                        İncele <i class="ri-arrow-right-line"></i>
+                    </div>
                 </a>`;
         });
 
-        // Animasyon Keyframe ekle
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes fadeIn {
