@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FTHLABZ | Digital Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     
     <style>
@@ -13,6 +13,7 @@
             --light: #ffffff;
             --gray: #f3f4f6;
             --primary: #2563eb;
+            --gold: #d4af37; /* Premium Altın Rengi */
         }
 
         * { box-sizing: border-box; }
@@ -25,7 +26,7 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            padding-bottom: 120px;
+            padding-bottom: 130px;
         }
 
         /* --- ARKA PLAN EFEKTLERİ --- */
@@ -56,57 +57,81 @@
             100% { transform: translate(30px, 50px); }
         }
 
-        /* --- NAV & HERO --- */
+        /* --- YENİ PREMIUM HEADER (NAV) --- */
         nav {
             display: flex;
-            justify-content: space-between; /* Sağı boşaltmak için */
-            align-items: center;
-            padding: 30px 5%;
+            flex-direction: column; /* Alt alta dizilim */
+            align-items: center; /* Ortalama */
+            padding: 40px 5% 20px 5%;
             max-width: 1400px;
             margin: 0 auto;
+            text-align: center;
         }
 
+        /* GOLD SHIMMER LOGO */
         .logo {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            color: var(--dark);
             text-decoration: none;
-            letter-spacing: -1px;
-        }
-        .logo span { color: var(--primary); }
-
-        .hero {
-            padding: 50px 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.3; /* DÜZELTME: 'g' harfi için satır yüksekliği arttı */
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #111, #444);
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            
+            /* Altın/Işık Efekti */
+            background: linear-gradient(to right, var(--dark) 20%, #fff 50%, var(--gold) 80%);
+            background-size: 200% auto;
+            color: #000;
+            background-clip: text;
+            text-fill-color: transparent;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            padding-bottom: 10px; /* Alt taşma payı */
+            
+            animation: shine 4s linear infinite; /* Işık geçiş animasyonu */
+        }
+        
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* LOGO ALTI SLOGAN */
+        .nav-slogan {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #6b7280;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 40px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--dark);
         }
         .hero p {
             font-size: 1.1rem;
             color: #6b7280;
-            max-width: 600px;
+            max-width: 700px;
+            margin: 0 auto;
             line-height: 1.6;
         }
 
         /* --- GRID & CARD --- */
         .container { 
             max-width: 1400px; 
-            padding: 20px 5%; 
+            padding: 30px 5%; 
             margin: 0 auto;
         }
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); 
             gap: 30px; 
         }
 
@@ -121,17 +146,17 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
-            align-items: center; /* Kart içeriğini ortala */
-            text-align: center; /* Metni ortala */
+            align-items: center;
+            text-align: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             position: relative;
             overflow: hidden;
-            height: 100%; /* Eşit yükseklik */
+            height: 100%;
         }
 
         .card:hover { 
             transform: translateY(-8px); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
             background: #fff;
         }
 
@@ -147,25 +172,26 @@
         .card h3 { font-size: 1.4rem; margin: 0 0 15px 0; font-weight: 800; }
         .card p { color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin: 0; flex-grow: 1; }
         
-        /* YENİ TOK BUTON TASARIMI */
+        /* TOK BUTON TASARIMI */
         .card-btn {
             margin-top: 30px;
-            padding: 12px 24px;
-            border-radius: 14px;
+            padding: 14px 28px;
+            border-radius: 16px;
             font-weight: 700;
             font-size: 0.95rem;
             display: flex; 
             align-items: center; 
             justify-content: center;
             gap: 10px;
-            color: #fff; /* Yazı rengi beyaz */
-            width: 100%; /* Tam genişlik */
+            color: #fff;
+            width: 100%;
             transition: 0.3s;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .card-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            filter: brightness(1.05);
         }
         .card-btn i { font-size: 1.2rem; }
 
@@ -176,10 +202,10 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            padding: 12px 30px;
+            padding: 14px 35px;
             border-radius: 50px;
             display: flex;
             align-items: center;
@@ -189,7 +215,7 @@
             border: 1px solid rgba(255,255,255,0.1);
             width: max-content;
             animation: slideUp 0.8s ease-out 1s backwards;
-            white-space: nowrap; /* Taşmayı engeller */
+            white-space: nowrap;
         }
 
         .contact-item {
@@ -203,13 +229,13 @@
 
         /* Mobil Düzeltmeleri */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; text-align: center; }
-            .hero p { text-align: center; }
+            .logo { font-size: 1.8rem; }
+            .hero h1 { font-size: 2.2rem; }
             .floating-contact { 
-                bottom: 20px; width: auto; max-width: 95%;
-                justify-content: center; padding: 10px 20px; gap: 15px; 
+                bottom: 20px; width: auto; max-width: 92%;
+                justify-content: center; padding: 12px 20px; gap: 15px; 
             }
-            .contact-item span { font-size: 0.8rem; } /* Mobilde font küçüldü */
+            .contact-item span { font-size: 0.8rem; }
             .contact-item i { font-size: 1.1rem; }
         }
 
@@ -227,8 +253,9 @@
     </div>
 
     <nav>
-        <a href="#" class="logo">FTHLABZ<span>.</span></a>
-        </nav>
+        <a href="#" class="logo">FTHLABZ</a>
+        <div class="nav-slogan">Future Tech Hub</div>
+    </nav>
 
     <section class="hero">
         <h1>Dijital Çözümler<br>Karargahı.</h1>
@@ -262,7 +289,7 @@
             { bg: "#ecfeff", text: "#0891b2" }  // Turkuaz
         ];
 
-        // PROJE LİSTESİ
+        // PROJE LİSTESİ (Buraya ekleme yapmaya devam edebilirsin)
         const projects = [
             { 
                 isim: "Sanal Keşif AR", 
@@ -308,7 +335,6 @@
             const theme = colors[i % colors.length];
             const delay = i * 100;
 
-            // Tok Buton Yapısı Eklendi
             list.innerHTML += `
                 <a href="${p.link}" class="card" style="animation: fadeIn 0.6s ease-out ${delay}ms backwards;">
                     <div class="icon-box" style="background: ${theme.bg}; color: ${theme.text};">
