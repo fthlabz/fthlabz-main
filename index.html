@@ -3,212 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FTHLABZ | Dijital Çözümler Karargahı</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>FTHLABZ | Digital Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #00d2ff;
-            --secondary: #3a7bd5;
-            --bg-dark: #0a0a0a;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --text-light: #e0e0e0;
+            --dark: #1a1a1a;
+            --light: #ffffff;
+            --gray: #f4f5f7;
+            --text-gray: #6b7280;
         }
 
         * { box-sizing: border-box; }
 
         body { 
-            background-color: var(--bg-dark);
-            /* Derinlik katan hareketli arka plan */
-            background-image: 
-                radial-gradient(circle at 20% 40%, rgba(0, 210, 255, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 80% 60%, rgba(58, 123, 213, 0.1) 0%, transparent 40%);
-            color: white; 
-            font-family: 'Inter', sans-serif; 
+            background-color: var(--light);
+            color: var(--dark); 
+            font-family: 'Manrope', sans-serif; 
             margin: 0; 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             overflow-x: hidden;
         }
 
-        .container { 
-            max-width: 1200px; 
-            width: 90%; 
-            padding: 80px 20px; 
-            z-index: 2;
+        /* --- HEADER & LOGO --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        /* Başlık Alanı - Hero Section */
-        header { text-align: center; margin-bottom: 70px; position: relative; }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
         
-        h1 { 
-            font-size: 4rem; 
-            font-weight: 900; 
-            margin: 0; 
-            background: linear-gradient(to right, var(--primary), var(--secondary), #fff); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-            text-transform: uppercase;
+        .logo span { color: #2563eb; } /* Logo noktası rengi */
+
+        /* Logo Resmi Koymak İstersen Bu Class'ı Kullan */
+        .logo-img {
+            height: 40px; /* Logo boyutu */
+            width: auto;
         }
 
-        .subtitle {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            margin-top: 15px;
-            font-weight: 400;
-            opacity: 0.8;
+        /* --- HERO SECTION (Büyük Başlık) --- */
+        .hero {
+            text-align: left;
+            padding: 60px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
         }
 
-        /* Proje Grid Yapısı */
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* --- GRID YAPISI --- */
+        .container { 
+            max-width: 1400px; 
+            width: 100%; 
+            padding: 40px 5%; 
+            margin: 0 auto 60px auto;
+        }
+
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 30px; 
-            perspective: 1000px; /* 3D etkisi için */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 40px; 
         }
 
-        /* Premium Kart Tasarımı - Glassmorphism + Işık Efekti */
+        /* --- KART TASARIMI (Referans Aldığın Tarz) --- */
         .card { 
-            background: var(--card-bg); 
-            backdrop-filter: blur(15px); /* Buzlu Cam */
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--card-border);
-            border-radius: 24px; 
-            padding: 40px 30px; 
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 30px; /* Büyük yuvarlak köşeler */
+            padding: 40px; 
             text-decoration: none; 
-            color: white; 
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            color: var(--dark); 
+            transition: all 0.4s ease;
             display: flex;
             flex-direction: column;
+            align-items: flex-start;
             position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02); /* Çok hafif, lüks gölge */
+            height: 100%;
         }
 
-        /* Kartın Üzerine Gelince (Hover) */
         .card:hover { 
-            transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
-            border-color: rgba(0, 210, 255, 0.4);
-            box-shadow: 
-                0 20px 40px rgba(0,0,0,0.4),
-                0 0 20px rgba(0, 210, 255, 0.1); /* Hafif neon parlaması */
+            transform: translateY(-10px); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+            border-color: transparent;
         }
 
-        /* Kayan Işık Efekti (CodePen'deki gibi) */
-        .card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 200%; height: 100%;
-            background: linear-gradient(
-                90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.1), 
-                rgba(0, 210, 255, 0.2),
-                rgba(255, 255, 255, 0.1),
-                transparent
-            );
-            transform: skewX(-20deg);
-            transition: 0.7s;
-        }
-        .card:hover::after {
-            left: 100%; /* Işık soldan sağa kayar */
+        /* İkon Kutusu */
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            transition: 0.3s;
         }
 
-        /* Kart İçeriği */
+        /* Kart Başlıkları */
         .card h3 { 
-            font-size: 1.8rem; 
+            font-size: 1.6rem; 
             margin: 0 0 15px 0; 
             font-weight: 800;
-            color: #fff;
+            letter-spacing: -0.5px;
         }
 
         .card p { 
-            color: var(--text-light); 
-            font-size: 1rem; 
+            color: var(--text-gray); 
+            font-size: 1.05rem; 
             line-height: 1.6; 
             margin: 0;
-            flex-grow: 1;
-            opacity: 0.9;
+            font-weight: 500;
         }
 
-        /* Alt Buton/Link Görünümü */
-        .card-action {
-            margin-top: 25px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--primary);
+        /* Buton Görünümü Link */
+        .card-link {
+            margin-top: 30px;
+            font-weight: 700;
+            font-size: 1rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            padding: 10px 0;
         }
-        .card-action span { transition: 0.3s; }
-        .card:hover .card-action span { transform: translateX(5px); }
+        
+        .card:hover .card-link { gap: 15px; } /* Hover'da ok kayar */
 
         /* Mobil Uyum */
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            .container { padding-top: 50px; }
-            .card { padding: 30px 25px; }
+            .hero h1 { font-size: 2.5rem; }
+            .grid { grid-template-columns: 1fr; }
+            .card { padding: 30px; border-radius: 24px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>FTHLABZ</h1>
-            <p class="subtitle">Dijital Çözümler Karargahı</p>
-        </header>
+    <nav>
+        <a href="#" class="logo">
+            FTHLABZ<span>.</span>
+            </a>
+        <div style="font-weight: 600; font-size: 0.9rem;">v2.4</div>
+    </nav>
 
+    <section class="hero">
+        <h1>Dijital Dönüşüm<br>Çözüm Ortağınız.</h1>
+        <p>İşletmenizin operasyonel yükünü hafifleten, maliyetleri düşüren ve verimliliği maksimize eden yeni nesil yazılım teknolojileri.</p>
+    </section>
+
+    <div class="container">
+        <h2 style="font-size: 1.5rem; margin-bottom: 30px;">Hizmetlerimiz & Çözümlerimiz</h2>
         <div id="program-listesi" class="grid">
             </div>
     </div>
+    
+    <footer style="text-align: center; padding: 40px; color: #999; font-size: 0.9rem; border-top: 1px solid #eee; margin-top: auto;">
+        &copy; 2026 FTHLABZ Digital Solutions.
+    </footer>
 
     <script>
-        // YENİ PROGRAM EKLEMEK İÇİN SADECE BU LİSTEYİ GÜNCELLE:
-        // Sen ne yazdıysan aynen bıraktım abi, isimler değişmedi.
+        // İKONLAR (SVG) - Modern Ajans Tarzı
+        const icons = {
+            ar: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>`,
+            stock: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`,
+            qr: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`,
+            card: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>`,
+            ai: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2Z"/><path d="M12 12 2.1 12a10.1 10.1 0 0 0 9.9 10Z"/><path d="m21 2-9 9"/></svg>`,
+            team: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
+        };
+
+        // RENK PALETİ (Sudofor tarzı canlı kurumsal renkler)
+        // Yeni proje eklediğinde sistem sırayla bu renkleri kullanır.
+        const colors = [
+            { bg: "#eff6ff", text: "#2563eb" }, // Mavi
+            { bg: "#f0fdf4", text: "#16a34a" }, // Yeşil
+            { bg: "#fff7ed", text: "#ea580c" }, // Turuncu
+            { bg: "#faf5ff", text: "#9333ea" }, // Mor
+            { bg: "#fef2f2", text: "#dc2626" }  // Kırmızı
+        ];
+
+        // --- BURASI SENİN PANELİN --- 
+        // Yeni program eklemek için sadece bu listeye ekleme yapıyorsun.
         const projeler = [
-            { isim: "Sanal Keşif", link: "https://fthlabz.github.io/sanal-kesif/index.html", aciklama: "İlk dijital keşif projemiz." },
-            { isim: "V-card", link: "https://fthlabz.github.io/V-cardv1/?id=Fatih-SARI", aciklama: "Digital V-card Business" },
-            { isim: "Stok takip/Satış", link: "https://fthlabz.github.io/stok-takip/", aciklama: "Stok Takip ve Satış" },
-            { isim: "Oto Qr-İd", link: "https://fthlabz.github.io/Otomatik-id-qr/", aciklama: "Stok takip entegre Qr İd" },
-            { isim: "Upscale", link: "https://fthlabz.github.io/Kod/", aciklama: "Emoji Qr-Resim & upscale" },
-            { isim: "Biz Kimiz", link: "https://fthlabz.github.io/fthlabz-reklam/index.html", aciklama: "operasyonel maliyet düşürme işlemleri" },
-            // YENİ EKLEMEK İÇİN AŞAĞIDAKİ SATIRI KOPYALA, BAŞTAKİ // İŞARETİNİ SİL VE DOLDUR:
-            // { isim: "Yeni Programın Adı", link: "link-adresi-buraya", aciklama: "Kısa açıklaması buraya" },
+            { 
+                isim: "AR Vitrin & Sanal Deneyim", 
+                link: "https://fthlabz.github.io/sanal-kesif/index.html", 
+                aciklama: "Müşterilerinizi mağazanıza getirmeden, ürünlerinizi onların evine taşıyın. Satışları artıran Artırılmış Gerçeklik (AR) teknolojisi.",
+                icon: icons.ar
+            },
+            { 
+                isim: "Mobil Envanter Yönetimi", 
+                link: "https://fthlabz.github.io/stok-takip/", 
+                aciklama: "El terminallerine binlerce lira ödemeye son. Cep telefonu kamerasıyla maliyetsiz, hızlı ve hatasız stok kontrol sistemi.",
+                icon: icons.stock
+            },
+            { 
+                isim: "Dijital Ürün Kimliği (QR)", 
+                link: "https://fthlabz.github.io/Otomatik-id-qr/", 
+                aciklama: "Her ürüne özel QR kimlik ile teknik verilere, stok durumuna ve ürün geçmişine anında erişim sağlayan akıllı etiketleme.",
+                icon: icons.qr
+            },
+            { 
+                isim: "Yeni Nesil Dijital Kartvizit", 
+                link: "https://fthlabz.github.io/V-cardv1/?id=Fatih-SARI", 
+                aciklama: "Kurumsal kimliğinizi temassız, sürdürülebilir ve sınırsız güncellenebilir bir şekilde paylaşın. Tek dokunuşla rehbere kayıt.",
+                icon: icons.card
+            },
+            { 
+                isim: "Görsel Optimizasyon & AI", 
+                link: "https://fthlabz.github.io/Kod/", 
+                aciklama: "E-ticaret ve katalog görsellerinizi yapay zeka ile 4K kaliteye dönüştürün. Bulanık fotoğrafları netleştirin.",
+                icon: icons.ai
+            },
+            { 
+                isim: "FTHLABZ Kurumsal", 
+                link: "https://fthlabz.github.io/fthlabz-reklam/index.html", 
+                aciklama: "İşletmenizin operasyonel maliyetlerini düşüren ve dijital dönüşümünü hızlandıran stratejik vizyonumuz.",
+                icon: icons.team
+            },
+            // YENİ EKLEME YAPMAK İÇİN AŞAĞIDAKİNİ KOPYALA:
+            // { isim: "Yeni Proje Adı", link: "link", aciklama: "Açıklama", icon: icons.stock },
         ];
 
         const liste = document.getElementById('program-listesi');
         
-        // Her proje için premium kartı oluştur
         projeler.forEach((p, index) => {
-            // Kartların sırayla gelmesi için küçük bir gecikme (opsiyonel)
-            const delay = index * 100; 
-
+            // Renk döngüsü (Sırayla renk seçer)
+            const theme = colors[index % colors.length];
+            
             liste.innerHTML += `
-                <a href="${p.link}" class="card" style="animation: fadeIn 0.6s ease-out ${delay}ms backwards;">
+                <a href="${p.link}" class="card">
+                    <div class="icon-box" style="background: ${theme.bg}; color: ${theme.text};">
+                        ${p.icon}
+                    </div>
                     <h3>${p.isim}</h3>
                     <p>${p.aciklama}</p>
-                    <div class="card-action">
-                        Keşfet <span>&rarr;</span>
+                    <div class="card-link" style="color: ${theme.text};">
+                        İncele <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </div>
                 </a>`;
         });
-
-        // Sayfa açılış animasyonu için style ekle
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(30px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
