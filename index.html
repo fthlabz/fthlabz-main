@@ -2,15 +2,11 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#fafafa">
-    <meta name="mobile-web-app-capable" content="yes">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FTHLABZ | Digital Solutions</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     
     <style>
@@ -19,10 +15,10 @@
             --light: #ffffff;
             --gray: #f3f4f6;
             --primary: #2563eb;
-            --gold: #d4af37;
+            --gold: #d4af37; /* Premium Gold Rengi */
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * { box-sizing: border-box; }
 
         body { 
             background-color: #fafafa;
@@ -32,23 +28,30 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            padding-bottom: 140px;
-            /* Lastik efektini kapatır, app gibi hissettirir */
-            overscroll-behavior-y: none;
+            padding-bottom: 140px; /* Alt bar için boşluk */
         }
 
         /* --- ARKA PLAN EFEKTLERİ (Lava Lamp) --- */
         .background-shapes {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
         }
         .shape {
-            position: absolute; filter: blur(90px); opacity: 0.5; animation: float 10s infinite alternate;
+            position: absolute;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: float 10s infinite alternate;
         }
         .shape-1 {
-            top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(37, 99, 235, 0.15);
+            top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: rgba(37, 99, 235, 0.15); /* Mavi */
         }
         .shape-2 {
-            bottom: 10%; right: -10%; width: 40vw; height: 40vw; background: rgba(245, 158, 11, 0.1); animation-delay: -5s;
+            bottom: 10%; right: -10%; width: 40vw; height: 40vw;
+            background: rgba(245, 158, 11, 0.1); /* Turuncu */
+            animation-delay: -5s;
         }
         
         @keyframes float {
@@ -56,99 +59,206 @@
             100% { transform: translate(30px, 50px); }
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER (GOLD & SHIMMER) --- */
         nav {
-            display: flex; flex-direction: column; align-items: center;
-            padding: 50px 5% 20px 5%; /* Üstten biraz daha boşluk bıraktım (Çentik için) */
-            max-width: 1400px; margin: 0 auto; text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 45px 5% 20px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .logo {
-            font-size: 2.4rem; font-weight: 800; text-decoration: none; letter-spacing: 1px; margin-bottom: 5px;
+            font-size: 2.4rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            
+            /* Gold Işık Animasyonu */
             background: linear-gradient(to right, var(--dark) 20%, #fff 50%, var(--gold) 80%);
-            background-size: 200% auto; color: #000; background-clip: text; text-fill-color: transparent;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            color: #000;
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
             animation: shine 4s linear infinite;
         }
         
-        @keyframes shine { to { background-position: 200% center; } }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
 
         .nav-slogan {
-            font-size: 0.85rem; font-weight: 600; color: #6b7280; letter-spacing: 3px; text-transform: uppercase; opacity: 0.8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #6b7280;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.8;
         }
 
-        /* --- HERO --- */
+        /* --- HERO SECTION --- */
         .hero {
-            padding: 30px 5%; max-width: 1000px; margin: 0 auto; text-align: center;
+            padding: 30px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
         }
         .hero h1 {
-            font-size: 3rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: var(--dark);
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--dark);
         }
         .hero p {
-            font-size: 1.1rem; color: #6b7280; max-width: 700px; margin: 0 auto; line-height: 1.6;
+            font-size: 1.1rem;
+            color: #6b7280;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         /* --- GRID & CARD --- */
         .container { 
-            max-width: 1400px; padding: 20px 5%; margin: 0 auto;
+            max-width: 1400px; 
+            padding: 20px 5%; 
+            margin: 0 auto;
         }
         .grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); 
+            gap: 30px; 
         }
 
         .card { 
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,1); border-radius: 24px; padding: 35px; 
-            text-decoration: none; color: var(--dark); 
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,1);
+            border-radius: 24px; 
+            padding: 35px; 
+            text-decoration: none; 
+            color: var(--dark); 
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex; flex-direction: column; align-items: center; text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; overflow: hidden; height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
         }
 
-        .card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px rgba(0,0,0,0.08); background: #fff; }
+        .card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+            background: #fff;
+        }
 
         .icon-box {
-            width: 70px; height: 70px; border-radius: 22px; display: flex; align-items: center; justify-content: center;
-            font-size: 32px; margin-bottom: 25px; transition: 0.3s;
+            width: 70px; height: 70px;
+            border-radius: 22px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 32px;
+            margin-bottom: 25px;
+            transition: 0.3s;
         }
 
-        .card h3 { font-size: 1.4rem; margin: 0 0 15px 0; font-weight: 800; }
+        .card h3 { 
+            font-size: 1.4rem; 
+            margin: 0 0 15px 0; 
+            font-weight: 800; 
+        }
 
-        .card p { color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin: 0; flex-grow: 1; }
+        .card p { 
+            color: #6b7280; 
+            font-size: 0.95rem; 
+            line-height: 1.5; 
+            margin: 0; 
+            flex-grow: 1; 
+        }
         
+        /* --- YENİ PREMIUM GLASS BUTON --- */
         .card-btn-glass {
-            margin-top: 30px; padding: 14px 20px; border-radius: 50px;
-            font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; justify-content: center;
-            gap: 10px; width: 100%; transition: all 0.3s ease;
-            color: var(--theme-color); background: var(--theme-bg); border: 1px solid transparent;
+            margin-top: 30px;
+            padding: 14px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            transition: all 0.3s ease;
+            
+            /* Glass Variables (JS'den geliyor) */
+            color: var(--theme-color);
+            background: var(--theme-bg);
+            border: 1px solid transparent;
         }
 
         .card:hover .card-btn-glass {
-            border-color: var(--theme-color); transform: translateY(-2px); background: #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border-color: var(--theme-color);
+            transform: translateY(-2px);
+            background: #fff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
-        .card-btn-glass i { font-size: 1.2rem; transition: 0.3s; }
-        .card:hover .card-btn-glass i { transform: translateX(5px); }
+        
+        .card-btn-glass i { 
+            font-size: 1.2rem; 
+            transition: 0.3s; 
+        }
+        
+        .card:hover .card-btn-glass i { 
+            transform: translateX(5px); 
+        }
 
-        /* --- CONTACT BAR --- */
+        /* --- FLOATING CONTACT BAR --- */
         .floating-contact {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            padding: 14px 35px; border-radius: 50px; display: flex; align-items: center; gap: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3); z-index: 1000; border: 1px solid rgba(255,255,255,0.1);
-            width: max-content; animation: slideUp 0.8s ease-out 1s backwards; white-space: nowrap;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 14px 35px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            z-index: 1000;
+            border: 1px solid rgba(255,255,255,0.1);
+            width: max-content;
+            animation: slideUp 0.8s ease-out 1s backwards;
+            white-space: nowrap;
         }
 
         .contact-item {
-            display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none;
-            font-size: 0.95rem; font-weight: 600; transition: 0.3s;
+            display: flex; align-items: center; gap: 10px;
+            color: #fff; text-decoration: none;
+            font-size: 0.95rem; font-weight: 600;
+            transition: 0.3s;
         }
         .contact-item:hover { color: var(--primary); transform: scale(1.05); }
         .divider { width: 1px; height: 24px; background: rgba(255,255,255,0.2); }
 
+        /* Mobil Düzenlemeler */
         @media (max-width: 768px) {
             .logo { font-size: 2rem; }
             .hero h1 { font-size: 2.2rem; }
-            .floating-contact { bottom: 20px; width: auto; max-width: 92%; justify-content: center; padding: 12px 20px; gap: 15px; }
+            .floating-contact { 
+                bottom: 20px; width: auto; max-width: 92%;
+                justify-content: center; padding: 12px 20px; gap: 15px; 
+            }
             .contact-item span { font-size: 0.85rem; }
             .contact-item i { font-size: 1.1rem; }
         }
@@ -193,15 +303,17 @@
     </div>
 
     <script>
+        // OTOMATİK RENK LİSTESİ
         const colors = [
-            { bg: "#eff6ff", text: "#2563eb" }, 
-            { bg: "#f0fdf4", text: "#16a34a" }, 
-            { bg: "#fff7ed", text: "#ea580c" }, 
-            { bg: "#e0e7ff", text: "#1e1b4b" }, 
-            { bg: "#fef2f2", text: "#dc2626" }, 
-            { bg: "#ecfeff", text: "#0891b2" }  
+            { bg: "#eff6ff", text: "#2563eb" }, // Mavi
+            { bg: "#f0fdf4", text: "#16a34a" }, // Yeşil
+            { bg: "#fff7ed", text: "#ea580c" }, // Turuncu
+            { bg: "#e0e7ff", text: "#1e1b4b" }, // Koyu Lacivert
+            { bg: "#fef2f2", text: "#dc2626" }, // Kırmızı
+            { bg: "#ecfeff", text: "#0891b2" }  // Turkuaz
         ];
 
+        // PROJELERİNİ BURAYA EKLİYORSUN
         const projects = [
             { 
                 isim: "Sanal Keşif AR", 
@@ -250,13 +362,12 @@
         const list = document.getElementById('program-listesi');
         
         projects.forEach((p, i) => {
+            // Rengi sırayla otomatik seç
             const theme = colors[i % colors.length];
             const delay = i * 100;
 
-            // DİKKAT: target="_blank" EKLEDİM.
-            // Bu komut sayesinde programlar sitenin içinde değil, YENİ ve TEMİZ bir sayfada açılır.
             list.innerHTML += `
-                <a href="${p.link}" target="_blank" class="card" style="--theme-bg: ${theme.bg}; --theme-color: ${theme.text}; animation: fadeIn 0.6s ease-out ${delay}ms backwards;">
+                <a href="${p.link}" class="card" style="--theme-bg: ${theme.bg}; --theme-color: ${theme.text}; animation: fadeIn 0.6s ease-out ${delay}ms backwards;">
                     <div class="icon-box" style="background: ${theme.bg}; color: ${theme.text};">
                         <i class="${p.icon}"></i>
                     </div>
@@ -269,6 +380,7 @@
                 </a>`;
         });
 
+        // Açılış Animasyonu
         const style = document.createElement('style');
         style.innerHTML = `
             @keyframes fadeIn {
