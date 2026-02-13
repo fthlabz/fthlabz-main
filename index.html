@@ -84,54 +84,33 @@
 
         /* --- GRID --- */
         .grid-container { padding: 0 20px; max-width: 1000px; margin: 0 auto; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; } /* Gap biraz arttı */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 
-        /* --- YENİ KART TASARIMI (DÖNEN ÇİZGİ EFEKTİ) --- */
+        /* --- KART TASARIMI --- */
         .card { 
-            /* Kartın içi biraz daha opak olsun ki arkadaki dönen çizgi karışmasın */
             background: rgba(255, 255, 255, 0.9); 
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border-radius: 24px; 
-            padding: 25px; 
+            border-radius: 24px; padding: 25px; 
             text-decoration: none; color: var(--dark); 
             display: flex; flex-direction: column; align-items: flex-start;
-            position: relative; 
-            overflow: hidden; /* Dışarı taşan ışığı kes */
+            position: relative; overflow: hidden; 
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-            cursor: pointer;
-            z-index: 1; /* İçerik önde */
-            border: 1px solid rgba(255,255,255,0.5); /* İnce sınır */
+            transition: transform 0.2s; cursor: pointer; z-index: 1; border: 1px solid rgba(255,255,255,0.5);
         }
-
         .card:active { transform: scale(0.98); }
 
-        /* --- İŞTE O SİHİRLİ DÖNEN ÇİZGİ (Gradient Border Animation) --- */
+        /* DÖNEN ÇİZGİ EFEKTİ */
         .card::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(transparent, transparent, transparent, var(--theme-color));
-            animation: rotate-border 4s linear infinite;
-            z-index: -2; /* En arkada */
+            animation: rotate-border 4s linear infinite; z-index: -2;
         }
-        
-        /* Beyaz iç alan (Dönen çizginin ortasını kapatır, sadece kenar kalır) */
         .card::after {
-            content: '';
-            position: absolute;
-            inset: 3px; /* 3px kalınlığında çizgi bırakır */
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 22px;
-            z-index: -1;
+            content: ''; position: absolute; inset: 3px;
+            background: rgba(255, 255, 255, 0.95); border-radius: 22px; z-index: -1;
         }
+        @keyframes rotate-border { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        @keyframes rotate-border {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* İçeriklerin z-index ayarı */
         .icon-box, h3, p, .card-btn-glass { position: relative; z-index: 2; }
 
         .icon-box {
@@ -217,47 +196,49 @@
             { bg: "#ecfeff", text: "#0891b2", btnBg: "rgba(8, 145, 178, 0.1)" }  
         ];
 
-        // LİNKLER www.fthlabz.com OLARAK KALDI.
+        // DÜZELTME: Linkler 'fthlabz.github.io' olarak ayarlandı.
+        // Bu sayede 404 hatası gidecek. Alttaki 'openLink' fonksiyonu ise
+        // bu linkleri Instagram tarayıcısında değil, Safari/Chrome'da açacak.
         const projects = [
             { 
                 isim: "Sanal Keşif AR", 
-                link: "https://www.fthlabz.com/sanal-kesif/", 
+                link: "https://fthlabz.github.io/sanal-kesif/index.html", 
                 aciklama: "Müşterinin evine ürün ışınlayan artırılmış gerçeklik vitrini.", 
                 icon: "ri-eye-fill" 
             },
             { 
                 isim: "Mobil Stok Takip", 
-                link: "https://www.fthlabz.com/stok-takip/", 
+                link: "https://fthlabz.github.io/stok-takip/", 
                 aciklama: "El terminalsiz, cep telefonuyla saniyeler içinde stok sayımı.", 
                 icon: "ri-archive-fill" 
             },
             { 
                 isim: "Akıllı Ürün Kimliği", 
-                link: "https://www.fthlabz.com/Otomatik-id-qr/", 
+                link: "https://fthlabz.github.io/Otomatik-id-qr/", 
                 aciklama: "Her ürüne özel QR kimlik ile teknik veri ve stok takibi.", 
                 icon: "ri-qr-code-fill" 
             },
             { 
                 isim: "Dijital Kartvizit", 
-                link: "https://www.fthlabz.com/V-cardv1/?id=Fatih-SARI", 
+                link: "https://fthlabz.github.io/V-cardv1/?id=Fatih-SARI", 
                 aciklama: "Sınırsız güncellenebilir, temassız yeni nesil kartvizit.", 
                 icon: "ri-bank-card-fill" 
             },
             { 
                 isim: "4K Upscaler & Emoji", 
-                link: "https://www.fthlabz.com/Kod/", 
+                link: "https://fthlabz.github.io/Kod/", 
                 aciklama: "Bulanık ürün fotoğraflarını 4K kaliteye çıkarın, emoji QR üretin.", 
                 icon: "ri-magic-fill" 
             },
             { 
                 isim: "Sanal Tablo", 
-                link: "https://www.fthlabz.com/sanal-tablo/", 
+                link: "https://fthlabz.github.io/sanal-tablo/index.html", 
                 aciklama: "Tablolarınızı devasa boyut veya gerçek boyutta duvarınızda görün.", 
                 icon: "ri-table-fill" 
             },
             { 
                 isim: "FTHLABZ Vizyon", 
-                link: "https://www.fthlabz.com/fthlabz-reklam/", 
+                link: "https://fthlabz.github.io/fthlabz-reklam/index.html", 
                 aciklama: "Operasyonel maliyetleri düşüren kurumsal stratejilerimiz.", 
                 icon: "ri-building-fill" 
             }
@@ -265,11 +246,20 @@
 
         const list = document.getElementById('program-listesi');
         
-        // --- TARAYICI FIRLATMA SİSTEMİ (GÜNCELLENDİ) ---
+        // --- SİHİRLİ DOKUNUŞ: TARAYICI ZORLAMA ---
+        // Bu kod, linkin adresi ne olursa olsun, onu telefonun ANA tarayıcısında açar.
         function openLink(url) {
-            // Basit ve etkili yöntem:
-            // "noopener,noreferrer" ekleyerek tarayıcıyı yeni session açmaya zorlarız.
-            window.open(url, '_blank', 'noopener,noreferrer');
+            // Instagram, Facebook vb. tarayıcıda mıyız?
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            var isInApp = (ua.indexOf('Instagram') > -1) || (ua.indexOf('FBAN') > -1) || (ua.indexOf('FBAV') > -1) || (ua.indexOf('LinkedIn') > -1);
+
+            if (isInApp) {
+                // Uygulama içindeysek, linki dışarı atmaya zorla
+                window.open(url, '_system');
+            } else {
+                // Zaten Chrome/Safari'deysek yeni sekmede aç
+                window.open(url, '_blank', 'noopener,noreferrer');
+            }
         }
 
         projects.forEach((p, i) => {
