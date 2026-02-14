@@ -15,19 +15,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* YENİ RENK PALETİ (KOYU MOD) */
+        /* RENK PALETİ (KOYU MOD) */
         :root { 
-            --bg-dark: #0f172a; /* Derin koyu mavi-gri */
-            --bg-card: rgba(30, 41, 59, 0.7); /* Koyu cam kart rengi */
-            --text-main: #f8fafc; /* Neredeyse beyaz metin */
-            --text-sub: #94a3b8; /* Açık gri alt metin */
+            --bg-dark: #0f172a; 
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8; 
             --primary: #3b82f6; 
             --gold: #d4af37; 
         }
         
         body { 
             margin: 0; padding: 0; 
-            /* Arka planı koyu gradient yaptık, derinlik katar */
             background: linear-gradient(to bottom, var(--bg-dark), #020617);
             color: var(--text-main); 
             font-family: 'Manrope', sans-serif; 
@@ -35,19 +34,18 @@
             overscroll-behavior-y: none; 
         }
         
-        /* Arka Plan Işıkları (Koyu zeminde daha çok parlar) */
+        /* Arka Plan */
         .background-shapes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
         .shape { position: absolute; filter: blur(120px); opacity: 0.6; animation: float 10s infinite alternate; }
-        .shape-1 { top: -20%; left: -10%; width: 60vw; height: 60vw; background: rgba(59, 130, 246, 0.3); } /* Mavi ışık */
-        .shape-2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: rgba(245, 158, 11, 0.25); animation-delay: -5s; } /* Turuncu ışık */
+        .shape-1 { top: -20%; left: -10%; width: 60vw; height: 60vw; background: rgba(59, 130, 246, 0.3); }
+        .shape-2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: rgba(245, 158, 11, 0.25); animation-delay: -5s; }
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 50px); } }
 
         /* Scroll Alanı */
-        .app-container { height: 100%; overflow-y: auto; padding-bottom: 180px; -webkit-overflow-scrolling: touch; }
+        .app-container { height: 100%; overflow-y: auto; padding-bottom: 40px; -webkit-overflow-scrolling: touch; }
         
         /* Header */
         nav { text-align: center; margin-top: 60px; margin-bottom: 30px; padding: 0 20px; }
-        /* Logoyu koyu zeminde parlasın diye Platin/Altın yaptık */
         .logo { 
             font-size: 2.4rem; font-weight: 800; letter-spacing: 1px;
             background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%); 
@@ -66,31 +64,27 @@
         .grid-container { padding: 0 25px; max-width: 1000px; margin: 0 auto; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         
-        /* YENİ KART TASARIMI (KOYU CAM) */
+        /* Kart Tasarımı */
         .card { 
             display: flex; flex-direction: column; align-items: center; text-align: center;
-            /* Kart rengi koyu cam oldu */
             background: var(--bg-card); 
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Kenarlık daha ince ve şeffaf */
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 28px; padding: 30px 25px;
             text-decoration: none; color: var(--text-main);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3); /* Gölge daha derin */
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
             transition: transform 0.2s, box-shadow 0.2s;
             position: relative; overflow: hidden;
             cursor: pointer; -webkit-tap-highlight-color: transparent; display: block;
         }
         .card:active { transform: scale(0.98); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.4); }
 
-        /* Dönen Işık Efekti (Daha belirgin) */
         .card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, transparent, var(--theme-color)); animation: spin 5s linear infinite; z-index: -2; opacity: 0.8; }
-        /* Kartın iç zemini */
         .card::after { content: ''; position: absolute; inset: 2px; background: var(--bg-card); border-radius: 26px; z-index: -1; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
         .icon-box, h3, p, .card-btn-glass { position: relative; z-index: 2; }
         
-        /* İkon kutusu biraz daha parlasın */
         .icon-box { 
             width: 65px; height: 65px; border-radius: 20px; 
             display: flex; align-items: center; justify-content: center; 
@@ -98,11 +92,9 @@
             box-shadow: inset 0 0 20px rgba(255,255,255,0.05);
         }
         
-        /* Kart başlık ve yazı renkleri açıldı */
         .card h3 { margin: 10px 0 8px 0; font-size: 1.4rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
         .card p { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 25px; line-height: 1.5; }
         
-        /* Buton daha modern */
         .card-btn-glass { 
             width: 100%; padding: 14px; border-radius: 16px; 
             font-weight: 700; font-size: 0.95rem; 
@@ -110,28 +102,30 @@
             backdrop-filter: blur(5px);
         }
 
-        /* İletişim Alanı (Koyu tema uyumlu) */
+        /* --- İLETİŞİM ALANI (ARTIK SABİT DEĞİL, EN SONDA) --- */
         .bottom-contact-wrapper {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            /* Fixed yerine Relative yapıldı */
+            position: relative; 
+            margin: 50px auto 20px auto; /* Üstten boşluk verildi */
             display: flex; flex-direction: column; align-items: center; gap: 10px;
-            z-index: 999; width: max-content;
+            z-index: 99; width: 100%;
         }
 
         .floating-contact { 
-            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px); /* Daha koyu */
-            padding: 10px 10px; border-radius: 50px; 
-            display: flex; gap: 10px; 
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px);
+            padding: 12px 15px; border-radius: 50px; 
+            display: flex; gap: 15px; 
             border: 1px solid rgba(255,255,255,0.15); 
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
         }
         
-        .contact-item { display: flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 10px 20px; border-radius: 40px; background: rgba(255,255,255,0.05); transition: 0.2s; }
+        .contact-item { display: flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 12px 25px; border-radius: 40px; background: rgba(255,255,255,0.05); transition: 0.2s; }
         .contact-item:hover { background: rgba(255,255,255,0.1); }
 
         .contact-text {
-            font-size: 0.75rem; color: var(--text-sub); font-weight: 700; 
+            font-size: 0.8rem; color: var(--text-sub); font-weight: 700; 
             letter-spacing: 1px; text-transform: uppercase;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5); margin-top: 5px;
         }
         
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -158,22 +152,21 @@
         <div class="grid-container">
             <div id="program-listesi" class="grid"></div>
         </div>
-    </div>
 
-    <div class="bottom-contact-wrapper">
-        <div class="floating-contact">
-            <a href="https://wa.me/905373583095" class="contact-item">
-                <i class="ri-whatsapp-fill" style="color: #25D366; font-size: 1.3rem;"></i><span>WhatsApp</span>
-            </a>
-            <a href="mailto:fthlabz@hotmail.com" class="contact-item">
-                <i class="ri-mail-fill" style="color: #f59e0b; font-size: 1.3rem;"></i><span>Email</span>
-            </a>
+        <div class="bottom-contact-wrapper">
+            <div class="floating-contact">
+                <a href="https://wa.me/905373583095" class="contact-item">
+                    <i class="ri-whatsapp-fill" style="color: #25D366; font-size: 1.4rem;"></i><span>WhatsApp</span>
+                </a>
+                <a href="mailto:fthlabz@hotmail.com" class="contact-item">
+                    <i class="ri-mail-fill" style="color: #f59e0b; font-size: 1.4rem;"></i><span>Email</span>
+                </a>
+            </div>
+            <div class="contact-text">Proje, Destek ve Bilgi Hattı</div>
         </div>
-        <div class="contact-text">Proje, Destek ve Bilgi Hattı</div>
     </div>
 
     <script>
-        // Renkler koyu temaya göre uyarlandı (Daha parlak ve canlı)
         const colors = [
             { bg: "rgba(59, 130, 246, 0.15)", text: "#60a5fa", btnBg: "rgba(59, 130, 246, 0.2)" }, // Mavi
             { bg: "rgba(34, 197, 94, 0.15)", text: "#4ade80", btnBg: "rgba(34, 197, 94, 0.2)" }, // Yeşil
@@ -238,7 +231,6 @@
 
         projects.forEach((p, i) => {
             const theme = colors[i % colors.length];
-            // Gecikmeyi biraz artırdık, daha sinematik giriş
             const delay = i * 0.12;
 
             list.innerHTML += `
