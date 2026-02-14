@@ -6,7 +6,7 @@
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#fafafa">
+    <meta name="theme-color" content="#0f172a">
     
     <title>FTHLABZ</title>
     
@@ -15,95 +15,126 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --dark: #111827; --light: #ffffff; --gray: #f3f4f6; --primary: #2563eb; --gold: #d4af37; }
+        /* YENİ RENK PALETİ (KOYU MOD) */
+        :root { 
+            --bg-dark: #0f172a; /* Derin koyu mavi-gri */
+            --bg-card: rgba(30, 41, 59, 0.7); /* Koyu cam kart rengi */
+            --text-main: #f8fafc; /* Neredeyse beyaz metin */
+            --text-sub: #94a3b8; /* Açık gri alt metin */
+            --primary: #3b82f6; 
+            --gold: #d4af37; 
+        }
         
-        body { margin: 0; padding: 0; background-color: #fafafa; color: #111; font-family: 'Manrope', sans-serif; overflow-x: hidden; overscroll-behavior-y: none; }
+        body { 
+            margin: 0; padding: 0; 
+            /* Arka planı koyu gradient yaptık, derinlik katar */
+            background: linear-gradient(to bottom, var(--bg-dark), #020617);
+            color: var(--text-main); 
+            font-family: 'Manrope', sans-serif; 
+            overflow-x: hidden; 
+            overscroll-behavior-y: none; 
+        }
         
-        /* Arka Plan */
+        /* Arka Plan Işıkları (Koyu zeminde daha çok parlar) */
         .background-shapes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .shape { position: absolute; filter: blur(90px); opacity: 0.5; animation: float 10s infinite alternate; }
-        .shape-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(37, 99, 235, 0.15); }
-        .shape-2 { bottom: 10%; right: -10%; width: 40vw; height: 40vw; background: rgba(245, 158, 11, 0.1); animation-delay: -5s; }
+        .shape { position: absolute; filter: blur(120px); opacity: 0.6; animation: float 10s infinite alternate; }
+        .shape-1 { top: -20%; left: -10%; width: 60vw; height: 60vw; background: rgba(59, 130, 246, 0.3); } /* Mavi ışık */
+        .shape-2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: rgba(245, 158, 11, 0.25); animation-delay: -5s; } /* Turuncu ışık */
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 50px); } }
 
-        /* Scroll Alanı - Alt boşluk artırıldı */
+        /* Scroll Alanı */
         .app-container { height: 100%; overflow-y: auto; padding-bottom: 180px; -webkit-overflow-scrolling: touch; }
         
         /* Header */
-        nav { text-align: center; margin-top: 50px; margin-bottom: 20px; padding: 0 20px; }
-        .logo { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #000 0%, #444 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
-        .nav-slogan { font-size: 0.8rem; font-weight: 700; color: #9ca3af; letter-spacing: 2px; text-transform: uppercase; }
+        nav { text-align: center; margin-top: 60px; margin-bottom: 30px; padding: 0 20px; }
+        /* Logoyu koyu zeminde parlasın diye Platin/Altın yaptık */
+        .logo { 
+            font-size: 2.4rem; font-weight: 800; letter-spacing: 1px;
+            background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%); 
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            display: inline-block; 
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+        .nav-slogan { font-size: 0.8rem; font-weight: 700; color: var(--text-sub); letter-spacing: 3px; text-transform: uppercase; margin-top: 5px; }
 
         /* Hero */
-        .hero { padding: 20px; text-align: center; margin-bottom: 10px; }
-        .hero h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--dark); }
-        .hero p { font-size: 1rem; color: #6b7280; max-width: 600px; margin: 0 auto; line-height: 1.5; }
+        .hero { padding: 20px; text-align: center; margin-bottom: 20px; }
+        .hero h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; color: var(--text-main); }
+        .hero p { font-size: 1rem; color: var(--text-sub); max-width: 600px; margin: 0 auto; line-height: 1.6; }
 
         /* Grid */
-        .grid-container { padding: 0 20px; max-width: 1000px; margin: 0 auto; }
+        .grid-container { padding: 0 25px; max-width: 1000px; margin: 0 auto; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         
-        /* KART TASARIMI - SAF KAN LINK (A ETIKETI) */
+        /* YENİ KART TASARIMI (KOYU CAM) */
         .card { 
-            display: flex; flex-direction: column; align-items: center; text-align: center; /* ORTALI */
-            background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.5); border-radius: 24px; padding: 25px;
-            text-decoration: none; color: #111;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            /* Kart rengi koyu cam oldu */
+            background: var(--bg-card); 
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Kenarlık daha ince ve şeffaf */
+            border-radius: 28px; padding: 30px 25px;
+            text-decoration: none; color: var(--text-main);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3); /* Gölge daha derin */
+            transition: transform 0.2s, box-shadow 0.2s;
             position: relative; overflow: hidden;
-            /* iOS Tıklama Garantisi */
             cursor: pointer; -webkit-tap-highlight-color: transparent; display: block;
         }
-        .card:active { transform: scale(0.96); }
+        .card:active { transform: scale(0.98); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.4); }
 
-        /* Dönen Işık Efekti */
-        .card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, transparent, var(--theme-color)); animation: spin 4s linear infinite; z-index: -2; }
-        .card::after { content: ''; position: absolute; inset: 3px; background: rgba(255,255,255,0.95); border-radius: 22px; z-index: -1; }
+        /* Dönen Işık Efekti (Daha belirgin) */
+        .card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, transparent, var(--theme-color)); animation: spin 5s linear infinite; z-index: -2; opacity: 0.8; }
+        /* Kartın iç zemini */
+        .card::after { content: ''; position: absolute; inset: 2px; background: var(--bg-card); border-radius: 26px; z-index: -1; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
         .icon-box, h3, p, .card-btn-glass { position: relative; z-index: 2; }
         
+        /* İkon kutusu biraz daha parlasın */
         .icon-box { 
-            width: 60px; height: 60px; border-radius: 18px; 
+            width: 65px; height: 65px; border-radius: 20px; 
             display: flex; align-items: center; justify-content: center; 
-            font-size: 28px; margin: 0 auto 15px auto; /* İkonu ortalar */
+            font-size: 30px; margin: 0 auto 15px auto;
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.05);
         }
         
-        .card h3 { margin: 5px 0 8px 0; font-size: 1.3rem; font-weight: 800; color: #111; }
-        .card p { font-size: 0.9rem; color: #6b7280; margin-bottom: 20px; line-height: 1.4; }
+        /* Kart başlık ve yazı renkleri açıldı */
+        .card h3 { margin: 10px 0 8px 0; font-size: 1.4rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
+        .card p { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 25px; line-height: 1.5; }
         
+        /* Buton daha modern */
         .card-btn-glass { 
-            width: 100%; padding: 12px; border-radius: 14px; 
-            font-weight: 700; font-size: 0.9rem; 
-            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 14px; border-radius: 16px; 
+            font-weight: 700; font-size: 0.95rem; 
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            backdrop-filter: blur(5px);
         }
 
-        /* --- İLETİŞİM ALANI --- */
+        /* İletişim Alanı (Koyu tema uyumlu) */
         .bottom-contact-wrapper {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
             z-index: 999; width: max-content;
         }
 
         .floating-contact { 
-            background: rgba(20,20,20,0.9); backdrop-filter: blur(20px); 
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px); /* Daha koyu */
             padding: 10px 10px; border-radius: 50px; 
             display: flex; gap: 10px; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.15); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
         }
         
-        .contact-item { display: flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 10px 20px; border-radius: 40px; background: rgba(255,255,255,0.1); }
-        
-        /* Yazı */
+        .contact-item { display: flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 10px 20px; border-radius: 40px; background: rgba(255,255,255,0.05); transition: 0.2s; }
+        .contact-item:hover { background: rgba(255,255,255,0.1); }
+
         .contact-text {
-            font-size: 0.75rem; color: #6b7280; font-weight: 700; 
-            letter-spacing: 0.5px; text-transform: uppercase;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+            font-size: 0.75rem; color: var(--text-sub); font-weight: 700; 
+            letter-spacing: 1px; text-transform: uppercase;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
         
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -131,24 +162,25 @@
 
     <div class="bottom-contact-wrapper">
         <div class="floating-contact">
-            <a href="https://wa.me/905373583095" class="contact-item" style="background: rgba(37, 211, 102, 0.15); color: #25D366;">
-                <i class="ri-whatsapp-fill" style="font-size: 1.2rem;"></i><span>WhatsApp</span>
+            <a href="https://wa.me/905373583095" class="contact-item">
+                <i class="ri-whatsapp-fill" style="color: #25D366; font-size: 1.3rem;"></i><span>WhatsApp</span>
             </a>
-            <a href="mailto:fthlabz@hotmail.com" class="contact-item" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
-                <i class="ri-mail-fill" style="font-size: 1.2rem;"></i><span>Email</span>
+            <a href="mailto:fthlabz@hotmail.com" class="contact-item">
+                <i class="ri-mail-fill" style="color: #f59e0b; font-size: 1.3rem;"></i><span>Email</span>
             </a>
         </div>
         <div class="contact-text">Proje, Destek ve Bilgi Hattı</div>
     </div>
 
     <script>
+        // Renkler koyu temaya göre uyarlandı (Daha parlak ve canlı)
         const colors = [
-            { bg: "#eff6ff", text: "#2563eb", btnBg: "rgba(37, 99, 235, 0.1)" }, 
-            { bg: "#f0fdf4", text: "#16a34a", btnBg: "rgba(22, 163, 74, 0.1)" }, 
-            { bg: "#fff7ed", text: "#ea580c", btnBg: "rgba(234, 88, 12, 0.1)" }, 
-            { bg: "#f5f3ff", text: "#7c3aed", btnBg: "rgba(124, 58, 237, 0.1)" }, 
-            { bg: "#fef2f2", text: "#dc2626", btnBg: "rgba(220, 38, 38, 0.1)" }, 
-            { bg: "#ecfeff", text: "#0891b2", btnBg: "rgba(8, 145, 178, 0.1)" }  
+            { bg: "rgba(59, 130, 246, 0.15)", text: "#60a5fa", btnBg: "rgba(59, 130, 246, 0.2)" }, // Mavi
+            { bg: "rgba(34, 197, 94, 0.15)", text: "#4ade80", btnBg: "rgba(34, 197, 94, 0.2)" }, // Yeşil
+            { bg: "rgba(249, 115, 22, 0.15)", text: "#fb923c", btnBg: "rgba(249, 115, 22, 0.2)" }, // Turuncu
+            { bg: "rgba(139, 92, 246, 0.15)", text: "#a78bfa", btnBg: "rgba(139, 92, 246, 0.2)" }, // Mor
+            { bg: "rgba(239, 68, 68, 0.15)", text: "#f87171", btnBg: "rgba(239, 68, 68, 0.2)" }, // Kırmızı
+            { bg: "rgba(6, 182, 212, 0.15)", text: "#22d3ee", btnBg: "rgba(6, 182, 212, 0.2)" }  // Turkuaz
         ];
 
         const projects = [
@@ -204,20 +236,17 @@
 
         const list = document.getElementById('program-listesi');
 
-        // --- EN BASİT VE GARANTİ YÖNTEM ---
-        // 'div' + 'onclick' YERİNE
-        // Direkt HTML 'a' etiketi ve target='_blank' var.
-        // Bu yapı %100 Safari ve Chrome'da açılır.
         projects.forEach((p, i) => {
             const theme = colors[i % colors.length];
-            const delay = i * 0.1;
+            // Gecikmeyi biraz artırdık, daha sinematik giriş
+            const delay = i * 0.12;
 
             list.innerHTML += `
-                <a href="${p.link}" target="_blank" class="card" style="--theme-color: ${theme.text}; --theme-bg: ${theme.bg}; animation: fadeInUp 0.6s ease-out ${delay}s backwards;">
+                <a href="${p.link}" target="_blank" class="card" style="--theme-color: ${theme.text}; animation: fadeInUp 0.7s ease-out ${delay}s backwards;">
                     <div class="icon-box" style="background: ${theme.bg}; color: ${theme.text};">
                         <i class="${p.icon}"></i>
                     </div>
-                    <h3 style="color: #111;">${p.isim}</h3>
+                    <h3>${p.isim}</h3>
                     <p>${p.aciklama}</p>
                     <div class="card-btn-glass" style="background: ${theme.btnBg}; color: ${theme.text};">
                         İncele <i class="ri-arrow-right-line"></i>
