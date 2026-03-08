@@ -196,14 +196,17 @@
 
     <script>
         // --- HAYALET KİLİT MİMARİSİ (API STANDARDI) ---
-        // Gelecek API entegrasyonlarında token güvenliği için standart yapı
-        const gizliPin = "FTHLABZ_API_SECURE";
-        // const sifreliKasa = "U2FsdGVkX1..."; 
+        const gizliPin = "FTHLABZ_API_SECURE_2026";
+        const sifreliKasa = "U2FsdGVkX1+Q/xR+v...bura_sifrelenmis_token_gelecek"; // İleride API token konulacaksa buraya şifrelenmiş hali eklenecek.
+        
         function hayaletKilitCoz(kasa, pin) {
             try {
                 const bytes = CryptoJS.AES.decrypt(kasa, pin);
                 return bytes.toString(CryptoJS.enc.Utf8);
-            } catch (e) { console.error("Kilit Hatası"); return null; }
+            } catch (e) { 
+                console.error("Kilit Hatası"); 
+                return null; 
+            }
         }
 
         const colors = [
@@ -215,27 +218,26 @@
             { bg: "rgba(6, 182, 212, 0.15)", text: "#22d3ee", btnBg: "rgba(6, 182, 212, 0.2)" }  
         ];
 
+        // 404 HATASINI ÇÖZEN TAM GÜNCEL LİNKLER LİSTESİ
         const projects = [
-            { isim: "Sanal Keşif AR", link: "/sanal-kesif/", aciklama: "Müşterinin evine ürün ışınlayan artırılmış gerçeklik vitrini.", icon: "ri-eye-fill", isExternal: false },
-            { isim: "Mobil Stok Takip", link: "/stok-takip/", aciklama: "El terminalsiz, cep telefonuyla saniyeler içinde stok sayımı.", icon: "ri-archive-fill", isExternal: false },
-            { isim: "Akıllı Ürün Kimliği", link: "/Otomatik-id-qr/", aciklama: "Her ürüne özel QR kimlik ile teknik veri ve stok takibi.", icon: "ri-qr-code-fill", isExternal: false },
-            { isim: "Dijital Kartvizit", link: "/V-cardv1/?id=Fatih-SARI", aciklama: "Sınırsız güncellenebilir, temassız yeni nesil kartvizit.", icon: "ri-bank-card-fill", isExternal: false },
-            { isim: "4K Upscaler & Emoji", link: "/resim-ultra-buyutucu/", aciklama: "Bulanık ürün fotoğraflarını 4K kaliteye çıkarın, emoji QR üretin.", icon: "ri-magic-fill", isExternal: false },
-            { isim: "Sanal Tablo", link: "/sanal-tablo/", aciklama: "Tablolarınızı devasa boyut veya gerçek boyutta duvarınızda görün.", icon: "ri-table-fill", isExternal: false },
+            { isim: "Sanal Keşif AR", link: "https://fthlabz.github.io/sanal-kesif/index.html", aciklama: "Müşterinin evine ürün ışınlayan artırılmış gerçeklik vitrini.", icon: "ri-eye-fill", isExternal: false },
+            { isim: "Mobil Stok Takip", link: "https://fthlabz.github.io/stok-takip/", aciklama: "El terminalsiz, cep telefonuyla saniyeler içinde stok sayımı.", icon: "ri-archive-fill", isExternal: false },
+            { isim: "Akıllı Ürün Kimliği", link: "https://fthlabz.github.io/Otomatik-id-qr/", aciklama: "Her ürüne özel QR kimlik ile teknik veri ve stok takibi.", icon: "ri-qr-code-fill", isExternal: false },
+            { isim: "Dijital Kartvizit", link: "https://fthlabz.github.io/V-cardv1/?id=Fatih-SARI", aciklama: "Sınırsız güncellenebilir, temassız yeni nesil kartvizit.", icon: "ri-bank-card-fill", isExternal: false },
+            { isim: "4K Upscaler & Emoji", link: "https://fthlabz.github.io/resim-ultra-buyutucu/", aciklama: "Bulanık ürün fotoğraflarını 4K kaliteye çıkarın, emoji QR üretin.", icon: "ri-magic-fill", isExternal: false },
+            { isim: "Sanal Tablo", link: "https://fthlabz.github.io/sanal-tablo/index.html", aciklama: "Tablolarınızı devasa boyut veya gerçek boyutta duvarınızda görün.", icon: "ri-table-fill", isExternal: false },
             { isim: "B2B Toptan Katalog", link: "https://b2b-toptan.onrender.com/?id=inegol_mobilya", aciklama: "Bayi ve müşterilerinize dijital kataloglarınızı tek tuşla gösterin.", icon: "fa-solid fa-store", isExternal: true },
-            { isim: "ProCost", link: "/procost/", aciklama: "Şirketlerin ürünlerini saniyeler içinde maliyet hesabı ve fiyat teklifi oluşturmasını sağlar.", icon: "ri-calculator-fill", isExternal: false },
-            { isim: "Fındık Randıman", link: "/findik-randiman/", aciklama: "Fındık Tüccar veya Toptancılarının Çiftçilerimize şeffaf ve anlık Randıman Fiyat dara hesabını detaylı gösterir.", icon: "ri-scales-fill", isExternal: false },
-            { isim: "FTHLABZ Vizyon", link: "/fthlabz-reklam/", aciklama: "Operasyonel maliyetleri düşüren kurumsal stratejilerimiz.", icon: "ri-building-fill", isExternal: false }
+            { isim: "ProCost", link: "https://fthlabz.github.io/procost/", aciklama: "Şirketlerin ürünlerini saniyeler içinde maliyet hesabı ve fiyat teklifi oluşturmasını sağlar.", icon: "ri-calculator-fill", isExternal: false },
+            { isim: "Fındık Randıman", link: "https://fthlabz.github.io/findik-randiman/", aciklama: "Fındık Tüccar veya Toptancılarının Çiftçilerimize şeffaf ve anlık Randıman Fiyat dara hesabını detaylı gösterir.", icon: "ri-scales-fill", isExternal: false },
+            { isim: "FTHLABZ Vizyon", link: "https://fthlabz.github.io/fthlabz-reklam/index.html", aciklama: "Operasyonel maliyetleri düşüren kurumsal stratejilerimiz.", icon: "ri-building-fill", isExternal: false }
         ];
 
         const list = document.getElementById('program-listesi');
 
-        // Kartları Oluştur
         projects.forEach((p, i) => {
             const theme = colors[i % colors.length];
             const delay = i * 0.12;
             
-            // a etiketi yerine div kullandık ki kendi onclick fonksiyonumuzu çalıştıralım
             list.innerHTML += `
                 <div onclick="openProject('${p.link}', '${p.isim}', ${p.isExternal})" class="card" style="--theme-color: ${theme.text}; animation: fadeInUp 0.7s ease-out ${delay}s backwards;">
                     <div class="icon-box" style="background: ${theme.bg}; color: ${theme.text};">
@@ -250,26 +252,22 @@
             `;
         });
 
-        // Proje Açma Fonksiyonu
         function openProject(url, name, isExternal) {
             if (isExternal) {
-                // Sadece Render.com gibi harici siteleri yeni sekmede aç
                 window.open(url, '_blank');
             } else {
-                // Senin projelerini site içinde göster
                 document.getElementById('main-view').style.display = 'none';
                 document.getElementById('project-view').style.display = 'flex';
                 document.getElementById('project-title-display').innerText = name;
                 document.getElementById('project-iframe').src = url;
-                window.scrollTo(0, 0); // Üste kaydır
+                window.scrollTo(0, 0); 
             }
         }
 
-        // Projeden Çıkış ve Ana Sayfaya Dönüş Fonksiyonu
         function closeProject() {
             document.getElementById('project-view').style.display = 'none';
             document.getElementById('main-view').style.display = 'block';
-            document.getElementById('project-iframe').src = ''; // Arka planda çalışmayı durdur
+            document.getElementById('project-iframe').src = ''; 
         }
     </script>
 </body>
