@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0f172a">
@@ -13,8 +14,6 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-
     <style>
         /* RENK PALETİ (KOYU MOD) */
         :root { 
@@ -42,7 +41,7 @@
         .shape-2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: rgba(245, 158, 11, 0.25); animation-delay: -5s; }
         @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 50px); } }
 
-        /* Ana Görünüm Scroll Alanı */
+        /* Scroll Alanı */
         .app-container { height: 100%; overflow-y: auto; padding-bottom: 40px; -webkit-overflow-scrolling: touch; }
         
         /* Header */
@@ -79,6 +78,7 @@
             cursor: pointer; -webkit-tap-highlight-color: transparent; display: block;
         }
         .card:active { transform: scale(0.98); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.4); }
+
         .card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, transparent, var(--theme-color)); animation: spin 5s linear infinite; z-index: -2; opacity: 0.8; }
         .card::after { content: ''; position: absolute; inset: 2px; background: var(--bg-card); border-radius: 26px; z-index: -1; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
@@ -102,9 +102,11 @@
             backdrop-filter: blur(5px);
         }
 
-        /* İLETİŞİM ALANI */
+        /* --- İLETİŞİM ALANI (ARTIK SABİT DEĞİL, EN SONDA) --- */
         .bottom-contact-wrapper {
-            position: relative; margin: 50px auto 20px auto; 
+            /* Fixed yerine Relative yapıldı */
+            position: relative; 
+            margin: 50px auto 20px auto; /* Üstten boşluk verildi */
             display: flex; flex-direction: column; align-items: center; gap: 10px;
             z-index: 99; width: 100%;
         }
@@ -112,124 +114,129 @@
         .floating-contact { 
             background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px);
             padding: 12px 15px; border-radius: 50px; 
-            display: flex; gap: 15px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            display: flex; gap: 15px; 
+            border: 1px solid rgba(255,255,255,0.15); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
         }
         
         .contact-item { display: flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 12px 25px; border-radius: 40px; background: rgba(255,255,255,0.05); transition: 0.2s; }
         .contact-item:hover { background: rgba(255,255,255,0.1); }
 
-        .contact-text { font-size: 0.8rem; color: var(--text-sub); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 1px 2px rgba(0,0,0,0.5); margin-top: 5px; }
+        .contact-text {
+            font-size: 0.8rem; color: var(--text-sub); font-weight: 700; 
+            letter-spacing: 1px; text-transform: uppercase;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5); margin-top: 5px;
+        }
         
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- PROJE İÇİ GÖRÜNÜM (IFRAME EKRANI) CSS --- */
-        #project-view {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: var(--bg-dark); z-index: 9999; flex-direction: column;
-        }
-        
-        .project-top-bar {
-            height: 60px; display: flex; align-items: center; padding: 0 20px; 
-            background: rgba(15, 23, 42, 0.98); border-bottom: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3); z-index: 2;
-        }
-        
-        .back-button {
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); 
-            color: white; font-size: 0.9rem; font-weight: 700; font-family: 'Manrope', sans-serif;
-            padding: 8px 16px; border-radius: 20px; display: flex; align-items: center; gap: 8px; 
-            cursor: pointer; transition: 0.2s;
-        }
-        .back-button:hover { background: rgba(255,255,255,0.2); }
-        
-        #project-title-display { margin-left: auto; color: var(--gold); font-weight: 800; font-size: 1rem; letter-spacing: 0.5px; }
-        
-        #project-iframe { flex: 1; width: 100%; border: none; background: #fff; }
     </style>
 </head>
 <body>
 
-    <div id="main-view">
-        <div class="background-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-        </div>
-
-        <div class="app-container">
-            <nav>
-                <div class="logo">FTHLABZ</div>
-                <div class="nav-slogan">Future Tech Hub</div>
-            </nav>
-
-            <section class="hero">
-                <h1>Dijital Çözümler<br>Ortağı.</h1>
-                <p>İşletme maliyetlerini düşüren, süreçleri hızlandıran yeni nesil teknolojiler.</p>
-            </section>
-
-            <div class="grid-container">
-                <div id="program-listesi" class="grid"></div>
-            </div>
-
-            <div class="bottom-contact-wrapper">
-                <div class="floating-contact">
-                    <a href="https://wa.me/905373583095" class="contact-item">
-                        <i class="ri-whatsapp-fill" style="color: #25D366; font-size: 1.4rem;"></i><span>WhatsApp</span>
-                    </a>
-                    <a href="mailto:fthlabz@hotmail.com" class="contact-item">
-                        <i class="ri-mail-fill" style="color: #f59e0b; font-size: 1.4rem;"></i><span>Email</span>
-                    </a>
-                </div>
-                <div class="contact-text">Proje, Destek ve Bilgi Hattı</div>
-            </div>
-        </div>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
     </div>
 
-    <div id="project-view">
-        <div class="project-top-bar">
-            <button class="back-button" onclick="closeProject()">
-                <i class="ri-arrow-left-line"></i> Ana Sayfaya Dön
-            </button>
-            <div id="project-title-display">Proje Adı</div>
+    <div class="app-container">
+        <nav>
+            <div class="logo">FTHLABZ</div>
+            <div class="nav-slogan">Future Tech Hub</div>
+        </nav>
+
+        <section class="hero">
+            <h1>Dijital Çözümler<br>Ortağı.</h1>
+            <p>İşletme maliyetlerini düşüren, süreçleri hızlandıran yeni nesil teknolojiler.</p>
+        </section>
+
+        <div class="grid-container">
+            <div id="program-listesi" class="grid"></div>
         </div>
-        <iframe id="project-iframe" src=""></iframe>
+
+        <div class="bottom-contact-wrapper">
+            <div class="floating-contact">
+                <a href="https://wa.me/905373583095" class="contact-item">
+                    <i class="ri-whatsapp-fill" style="color: #25D366; font-size: 1.4rem;"></i><span>WhatsApp</span>
+                </a>
+                <a href="mailto:fthlabz@hotmail.com" class="contact-item">
+                    <i class="ri-mail-fill" style="color: #f59e0b; font-size: 1.4rem;"></i><span>Email</span>
+                </a>
+            </div>
+            <div class="contact-text">Proje, Destek ve Bilgi Hattı</div>
+        </div>
     </div>
 
     <script>
-        // --- HAYALET KİLİT MİMARİSİ (API STANDARDI) ---
-        const gizliPin = "FTHLABZ_API_SECURE_2026";
-        const sifreliKasa = "U2FsdGVkX1+Q/xR+v...bura_sifrelenmis_token_gelecek"; // İleride API token konulacaksa buraya şifrelenmiş hali eklenecek.
-        
-        function hayaletKilitCoz(kasa, pin) {
-            try {
-                const bytes = CryptoJS.AES.decrypt(kasa, pin);
-                return bytes.toString(CryptoJS.enc.Utf8);
-            } catch (e) { 
-                console.error("Kilit Hatası"); 
-                return null; 
-            }
-        }
-
         const colors = [
-            { bg: "rgba(59, 130, 246, 0.15)", text: "#60a5fa", btnBg: "rgba(59, 130, 246, 0.2)" }, 
-            { bg: "rgba(34, 197, 94, 0.15)", text: "#4ade80", btnBg: "rgba(34, 197, 94, 0.2)" }, 
-            { bg: "rgba(249, 115, 22, 0.15)", text: "#fb923c", btnBg: "rgba(249, 115, 22, 0.2)" }, 
-            { bg: "rgba(139, 92, 246, 0.15)", text: "#a78bfa", btnBg: "rgba(139, 92, 246, 0.2)" }, 
-            { bg: "rgba(239, 68, 68, 0.15)", text: "#f87171", btnBg: "rgba(239, 68, 68, 0.2)" }, 
-            { bg: "rgba(6, 182, 212, 0.15)", text: "#22d3ee", btnBg: "rgba(6, 182, 212, 0.2)" }  
+            { bg: "rgba(59, 130, 246, 0.15)", text: "#60a5fa", btnBg: "rgba(59, 130, 246, 0.2)" }, // Mavi
+            { bg: "rgba(34, 197, 94, 0.15)", text: "#4ade80", btnBg: "rgba(34, 197, 94, 0.2)" }, // Yeşil
+            { bg: "rgba(249, 115, 22, 0.15)", text: "#fb923c", btnBg: "rgba(249, 115, 22, 0.2)" }, // Turuncu
+            { bg: "rgba(139, 92, 246, 0.15)", text: "#a78bfa", btnBg: "rgba(139, 92, 246, 0.2)" }, // Mor
+            { bg: "rgba(239, 68, 68, 0.15)", text: "#f87171", btnBg: "rgba(239, 68, 68, 0.2)" }, // Kırmızı
+            { bg: "rgba(6, 182, 212, 0.15)", text: "#22d3ee", btnBg: "rgba(6, 182, 212, 0.2)" }  // Turkuaz
         ];
 
-        // 404 HATASINI ÇÖZEN TAM GÜNCEL LİNKLER LİSTESİ
         const projects = [
-            { isim: "Sanal Keşif AR", link: "https://fthlabz.github.io/sanal-kesif/index.html", aciklama: "Müşterinin evine ürün ışınlayan artırılmış gerçeklik vitrini.", icon: "ri-eye-fill", isExternal: false },
-            { isim: "Mobil Stok Takip", link: "https://fthlabz.github.io/stok-takip/", aciklama: "El terminalsiz, cep telefonuyla saniyeler içinde stok sayımı.", icon: "ri-archive-fill", isExternal: false },
-            { isim: "Akıllı Ürün Kimliği", link: "https://fthlabz.github.io/Otomatik-id-qr/", aciklama: "Her ürüne özel QR kimlik ile teknik veri ve stok takibi.", icon: "ri-qr-code-fill", isExternal: false },
-            { isim: "Dijital Kartvizit", link: "https://fthlabz.github.io/V-cardv1/?id=Fatih-SARI", aciklama: "Sınırsız güncellenebilir, temassız yeni nesil kartvizit.", icon: "ri-bank-card-fill", isExternal: false },
-            { isim: "4K Upscaler & Emoji", link: "https://fthlabz.github.io/resim-ultra-buyutucu/", aciklama: "Bulanık ürün fotoğraflarını 4K kaliteye çıkarın, emoji QR üretin.", icon: "ri-magic-fill", isExternal: false },
-            { isim: "Sanal Tablo", link: "https://fthlabz.github.io/sanal-tablo/index.html", aciklama: "Tablolarınızı devasa boyut veya gerçek boyutta duvarınızda görün.", icon: "ri-table-fill", isExternal: false },
-            { isim: "B2B Toptan Katalog", link: "https://b2b-toptan.onrender.com/?id=inegol_mobilya", aciklama: "Bayi ve müşterilerinize dijital kataloglarınızı tek tuşla gösterin.", icon: "fa-solid fa-store", isExternal: true },
-            { isim: "ProCost", link: "https://fthlabz.github.io/procost/", aciklama: "Şirketlerin ürünlerini saniyeler içinde maliyet hesabı ve fiyat teklifi oluşturmasını sağlar.", icon: "ri-calculator-fill", isExternal: false },
-            { isim: "Fındık Randıman", link: "https://fthlabz.github.io/findik-randiman/", aciklama: "Fındık Tüccar veya Toptancılarının Çiftçilerimize şeffaf ve anlık Randıman Fiyat dara hesabını detaylı gösterir.", icon: "ri-scales-fill", isExternal: false },
-            { isim: "FTHLABZ Vizyon", link: "https://fthlabz.github.io/fthlabz-reklam/index.html", aciklama: "Operasyonel maliyetleri düşüren kurumsal stratejilerimiz.", icon: "ri-building-fill", isExternal: false }
+            { 
+                isim: "Sanal Keşif AR", 
+                link: "https://fthlabz.github.io/sanal-kesif/index.html", 
+                aciklama: "Müşterinin evine ürün ışınlayan artırılmış gerçeklik vitrini.", 
+                icon: "ri-eye-fill" 
+            },
+            { 
+                isim: "Mobil Stok Takip", 
+                link: "https://fthlabz.github.io/stok-takip/", 
+                aciklama: "El terminalsiz, cep telefonuyla saniyeler içinde stok sayımı.", 
+                icon: "ri-archive-fill" 
+            },
+            { 
+                isim: "Akıllı Ürün Kimliği", 
+                link: "https://fthlabz.github.io/Otomatik-id-qr/", 
+                aciklama: "Her ürüne özel QR kimlik ile teknik veri ve stok takibi.", 
+                icon: "ri-qr-code-fill" 
+            },
+            { 
+                isim: "Dijital Kartvizit", 
+                link: "https://fthlabz.github.io/V-cardv1/?id=Fatih-SARI", 
+                aciklama: "Sınırsız güncellenebilir, temassız yeni nesil kartvizit.", 
+                icon: "ri-bank-card-fill" 
+            },
+            { 
+                isim: "4K Upscaler & Emoji", 
+                link: "https://fthlabz.github.io/resim-ultra-buyutucu/", 
+                aciklama: "Bulanık ürün fotoğraflarını 4K kaliteye çıkarın, emoji QR üretin.", 
+                icon: "ri-magic-fill" 
+            },
+            { 
+                isim: "Sanal Tablo", 
+                link: "https://fthlabz.github.io/sanal-tablo/index.html", 
+                aciklama: "Tablolarınızı devasa boyut veya gerçek boyutta duvarınızda görün.", 
+                icon: "ri-table-fill" 
+            },
+            { 
+                isim: "B2B Toptan Katalog", 
+                link: "https://b2b-toptan.onrender.com/?id=inegol_mobilya", 
+                aciklama: "Bayi ve müşterilerinize dijital kataloglarınızı tek tuşla gösterin.", 
+                icon: "fa-solid fa-store" 
+            },
+            { 
+                isim: "ProCost", 
+                link: "https://fthlabz.github.io/procost/", 
+                aciklama: "Şirketlerin ürünlerini saniyeler içinde maliyet hesabı ve fiyat teklifi oluşturmasını sağlar.", 
+                icon: "ri-calculator-fill" 
+            },
+            { 
+                isim: "Fındık Randıman", 
+                link: "https://fthlabz.github.io/findik-randiman/", 
+                aciklama: "Fındık Tüccar veya Toptancılarının Çiftçilerimize şeffaf ve anlık Randıman Fiyat dara hesabını detaylı gösterir.", 
+                icon: "ri-scales-fill" 
+            },
+            { 
+                isim: "FTHLABZ Vizyon", 
+                link: "https://fthlabz.github.io/fthlabz-reklam/index.html", 
+                aciklama: "Operasyonel maliyetleri düşüren kurumsal stratejilerimiz.", 
+                icon: "ri-building-fill" 
+            }
         ];
 
         const list = document.getElementById('program-listesi');
@@ -237,9 +244,9 @@
         projects.forEach((p, i) => {
             const theme = colors[i % colors.length];
             const delay = i * 0.12;
-            
+
             list.innerHTML += `
-                <div onclick="openProject('${p.link}', '${p.isim}', ${p.isExternal})" class="card" style="--theme-color: ${theme.text}; animation: fadeInUp 0.7s ease-out ${delay}s backwards;">
+                <a href="${p.link}" target="_blank" class="card" style="--theme-color: ${theme.text}; animation: fadeInUp 0.7s ease-out ${delay}s backwards;">
                     <div class="icon-box" style="background: ${theme.bg}; color: ${theme.text};">
                         <i class="${p.icon}"></i>
                     </div>
@@ -248,27 +255,9 @@
                     <div class="card-btn-glass" style="background: ${theme.btnBg}; color: ${theme.text};">
                         İncele <i class="ri-arrow-right-line"></i>
                     </div>
-                </div>
+                </a>
             `;
         });
-
-        function openProject(url, name, isExternal) {
-            if (isExternal) {
-                window.open(url, '_blank');
-            } else {
-                document.getElementById('main-view').style.display = 'none';
-                document.getElementById('project-view').style.display = 'flex';
-                document.getElementById('project-title-display').innerText = name;
-                document.getElementById('project-iframe').src = url;
-                window.scrollTo(0, 0); 
-            }
-        }
-
-        function closeProject() {
-            document.getElementById('project-view').style.display = 'none';
-            document.getElementById('main-view').style.display = 'block';
-            document.getElementById('project-iframe').src = ''; 
-        }
     </script>
 </body>
 </html>
